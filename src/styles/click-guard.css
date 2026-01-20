@@ -1,0 +1,17 @@
+/* src/styles/click-guard.css — ensures Choose buttons remain clickable */
+
+/* Prevent header overlap blocking interactions */
+.topbar--full { position: relative; z-index: 2; }
+
+/* Bring main content forward */
+.app-shell, .content { position: relative; z-index: 3; }
+
+/* Always allow pointer events on buttons */
+button, .btn, .choose-btn { pointer-events: auto; cursor: pointer; }
+
+/* Ensure card/tile wrappers don't trap clicks */
+.option-card, .choice-card, .card.option, .choice-tile {
+  position: relative;
+  z-index: 1;
+  pointer-events: auto;
+}

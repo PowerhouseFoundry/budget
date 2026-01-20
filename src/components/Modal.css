@@ -1,0 +1,11 @@
+/* src/components/Modal.css */
+.modal-backdrop{ position:fixed; inset:0; background:rgba(15,23,42,.38); display:grid; place-items:center; }
+.modal-card{ width:min(820px,94vw); background:#fff; border:1px solid #e5e7eb; border-radius:16px; padding:16px; box-shadow:0 24px 60px rgba(0,0,0,.25); }
+.modal-head{ display:flex; align-items:center; justify-content:space-between; gap:12px; }
+.modal-title{ font-size:1.25rem; font-weight:800; color:#0b3c91; }
+.icon-btn{ background:#fff; border:1px solid #e5e7eb; border-radius:10px; padding:6px 10px; cursor:pointer; }
+.modal-body{ margin-top:10px; color:#111827; line-height:1.5; }
+.modal-actions{ display:flex; justify-content:flex-end; gap:10px; margin-top:12px; }
+.btn{ border:none; border-radius:10px; padding:10px 14px; cursor:pointer; font-weight:700; }
+.btn.primary{ background:var(--blue); color:#fff; }
+.btn.secondary{ background:#f3f4f6; }

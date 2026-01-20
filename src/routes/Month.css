@@ -1,0 +1,388 @@
+/* src/routes/Month.css (10l) – retains earlier modal + grids */
+/* 3-up card grids */
+.grid3,
+.leisure-grid,
+.bills-grid{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+@media (max-width: 1100px){
+  .bills-grid{
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 700px){
+  .bills-grid{
+    grid-template-columns: 1fr;
+  }
+}
+
+
+.choiceCard .img,
+.leisure-card .art{
+  width: 100%;
+  height: 120px;
+  background: #f8fafc;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+
+.bill-img-ph .img-ph{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 12px;
+  display: block;
+}
+
+
+.fit-img{
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
+}
+
+.card.block{ background:#fff; border:1px solid var(--border); border-radius:12px; padding:14px; }
+.block-title{ font-weight:800; margin-bottom:8px; }
+
+.modal-backdrop{
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+.modal-card{
+  background: #fff;
+  border-radius: 12px;
+  width: min(780px, 95vw);
+  box-shadow: 0 10px 28px rgba(0,0,0,.25);
+  overflow: hidden;
+}
+.modal-head{
+  display:flex; align-items:center; justify-content:space-between;
+  padding:12px 14px; border-bottom:1px solid var(--border);
+}
+.modal-title{ font-weight:800; }
+.icon-btn{ background:transparent; border:0; font-size:1rem; cursor:pointer; }
+.modal-body{ padding:14px; }
+.modal-actions{ padding:12px 14px; border-top:1px solid var(--border); display:flex; justify-content:flex-end; gap:8px; }
+
+.statement.table .st-row{ display:flex; align-items:center; justify-content:space-between; padding:8px 0; border-bottom:1px solid #eee; }
+.statement.table .st-row.st-head{ font-weight:800; border-bottom:2px solid #e5e7eb; }
+.statement.table .st-row.total{ font-weight:800; }
+.st-amount.pos{ color:#059669; }
+.st-amount.neg{ color:#dc2626; }
+
+@media (max-width: 860px){
+  .grid3,
+  .leisure-grid,
+  .bills-grid{ grid-template-columns: repeat(2, minmax(0,1fr)); }
+}
+/* --- click-unblock: keep header on top, but ensure main grid is clickable --- */
+.topbar--full { position: sticky; top: 0; z-index: 10; } /* header above */
+.app-shell, .content { position: relative; z-index: 0; }  /* baseline */
+.month-page { position: relative; z-index: 0; }
+
+/* ensure choice and leisure cards sit above any stray overlays */
+.grid3, .leisure-grid, .choices-grid, .tiles-grid { position: relative; z-index: 1; }
+.choiceCard, .leisure-card { position: relative; z-index: 1; pointer-events: auto; }
+.choiceCard .btn, .leisure-card .btn { position: relative; z-index: 2; pointer-events: auto; }
+
+/* modals (when present) should be above everything */
+.modal-backdrop { position: fixed; inset: 0; z-index: 1000; }
+
+/* safety: if any overlay class exists but is empty/transparent, don't eat clicks */
+.overlay, .scrim, .shade { pointer-events: none; }
+/* --- Click Unblocker (safe) --- */
+
+/* 1) Ensure the main content layer can receive clicks above anything stray */
+.app-shell, .content, .month-page {
+  position: relative;
+  z-index: 10;
+}
+
+/* 2) MANY UI kits render a full-card <a> or ::before overlay; disable its hitbox */
+.option-card a,
+.choice-card a,
+.tile a,
+.card.option a,
+.card a,
+.option-card::before,
+.choice-card::before,
+.tile::before,
+.card.option::before,
+.card::before {
+  pointer-events: none !important;
+}
+
+/* 3) But keep the actual card and its buttons clickable */
+.option-card,
+.choice-card,
+.tile,
+.card.option,
+.card,
+button,
+.btn {
+  pointer-events: auto !important;
+}
+
+/* 4) Some “disabled” styles rely on aria/disabled—don’t disable unless truly disabled */
+button[aria-disabled="true"],
+button[disabled] {
+  pointer-events: none !important;
+}
+
+/* 5) Guard against a wide header/KPI hitbox eating clicks below it */
+.topbar, .topbar--full {
+  position: relative;
+  z-index: 9;           /* lower than content */
+}
+/* =========================================================
+   Powerhouse "Game UI" Skin (SAFE OVERRIDES)
+   Paste at the BOTTOM of Month.css
+   ========================================================= */
+
+:root{
+  --ph-green-1:#35d46a;
+  --ph-green-2:#1ea94f;
+  --ph-green-3:#138a3f;
+
+  --ph-purple-1:#8a4bd6;
+  --ph-purple-2:#6b2fc1;
+  --ph-purple-3:#4c1d95;
+
+  --ph-ink:#0f172a;
+  --ph-muted:#475569;
+  --ph-border: rgba(15, 23, 42, 0.10);
+}
+
+/* Main page spacing stays the same; just soften the overall surface */
+.month-page{
+  color: var(--ph-ink);
+}
+
+/* Core card look (do NOT change layout, only appearance) */
+.card,
+.card.block,
+.block{
+  border-radius: 20px !important;
+  border: 1px solid var(--ph-border) !important;
+  background: rgba(255,255,255,0.94) !important;
+  box-shadow: 0 18px 50px rgba(0,0,0,0.10) !important;
+}
+
+/* Headings feel like the onboarding screens */
+.block-title{
+  letter-spacing: -0.2px;
+  color: var(--ph-ink);
+}
+
+/* Buttons */
+.btn{
+  border-radius: 999px !important;
+  font-weight: 900 !important;
+  letter-spacing: .3px;
+  padding: 10px 14px !important;
+}
+
+/* Green primary (Start Challenge style) */
+.btn.primary{
+  color: #fff !important;
+  border: 2px solid rgba(255,255,255,.35) !important;
+  background: linear-gradient(180deg, var(--ph-green-1) 0%, var(--ph-green-2) 55%, var(--ph-green-3) 100%) !important;
+  box-shadow: 0 14px 32px rgba(0,0,0,.20), inset 0 2px 0 rgba(255,255,255,.30) !important;
+}
+.btn.primary:hover{ transform: translateY(-1px); }
+.btn.primary:active{ transform: translateY(0px) scale(.99); }
+
+/* Purple secondary (How to play style) */
+.btn.secondary{
+  color:#fff !important;
+  border: 2px solid rgba(255,255,255,.25) !important;
+  background: linear-gradient(180deg, var(--ph-purple-1) 0%, var(--ph-purple-2) 60%, var(--ph-purple-3) 100%) !important;
+  box-shadow: 0 10px 22px rgba(0,0,0,.18), inset 0 2px 0 rgba(255,255,255,.22) !important;
+}
+.btn.secondary:hover{ transform: translateY(-1px); }
+.btn.secondary:active{ transform: translateY(0px) scale(.99); }
+
+/* Pills: cleaner + more game-like */
+.pill{
+  border-radius: 999px !important;
+  border: 1px solid rgba(15,23,42,0.10) !important;
+  background: rgba(255,255,255,0.92) !important;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.06);
+}
+
+/* Make positive/negative clearer but not harsh */
+.pill.pos, .st-amount.pos { color: #0b7a3d !important; }
+.pill.neg, .st-amount.neg { color: #b42318 !important; }
+
+/* Modals: match the new rounded look */
+.modal-card{
+  border-radius: 18px !important;
+  border: 1px solid rgba(255,255,255,0.50) !important;
+  box-shadow: 0 28px 80px rgba(0,0,0,0.35) !important;
+}
+
+.modal-head{
+  background: rgba(255,255,255,0.94);
+}
+
+/* Images inside cards: keep your layout, just soften */
+.choiceCard .img,
+.leisure-card .art,
+.bill-img-ph{
+  border-radius: 16px !important;
+  background: rgba(15,23,42,0.04) !important;
+}
+
+/* IMPORTANT: Do not break your click-unblock rules */
+.overlay, .scrim, .shade { pointer-events: none; }
+/* Subtle background wash to visually link Month to intro screens */
+.month-page{
+  background:
+    radial-gradient(circle at 10% 0%, rgba(34,197,94,.08), transparent 45%),
+    radial-gradient(circle at 90% 10%, rgba(139,92,246,.08), transparent 40%);
+}
+/* --- Housing & Bills tiles (pro look) --- */
+
+.bills-grid{
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+@media (max-width: 1100px){
+  .bills-grid{ grid-template-columns: repeat(2, minmax(0,1fr)); }
+}
+@media (max-width: 700px){
+  .bills-grid{ grid-template-columns: 1fr; }
+}
+
+
+.bill-tile{
+  display: flex;
+  align-items: stretch;
+  border-radius: 16px;
+  background: rgba(255,255,255,0.78);
+  border: 1px solid rgba(20, 28, 60, 0.08);
+  box-shadow: 0 10px 26px rgba(20, 28, 60, 0.10);
+  overflow: hidden;
+  min-height: 90px;
+}
+
+.bill-iconPane{
+  width: 180px;
+  display: grid;
+  place-items: center;
+  border-right: 1px solid rgba(20, 28, 60, 0.08);
+}
+
+/* subtle category tints */
+.bill-iconPane.rent{
+  background: linear-gradient(135deg, rgba(139,92,246,0.20), rgba(255,255,255,0.00));
+}
+.bill-iconPane.utilities{
+  background: linear-gradient(135deg, rgba(59,130,246,0.18), rgba(255,255,255,0.00));
+}
+.bill-iconPane.bills{
+  background: linear-gradient(135deg, rgba(34,197,94,0.14), rgba(255,255,255,0.00));
+}
+.bill-iconPane.phone{
+  background: linear-gradient(135deg, rgba(20,184,166,0.16), rgba(255,255,255,0.00));
+}
+
+.bill-iconImg{
+  width: 78px;
+  height: 78px;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 8px 14px rgba(0,0,0,0.10));
+}
+
+.bill-meta{
+  flex: 1;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+}
+
+.bill-name{
+  font-weight: 800;
+  font-size: 1.15rem;
+  letter-spacing: 0.2px;
+  color: #111827;
+}
+
+.bill-amt{
+  font-weight: 900;
+  font-size: 1.6rem;
+  color: #0f172a;
+}
+
+/* tiny hover polish */
+.bill-tile:hover{
+  transform: translateY(-1px);
+  box-shadow: 0 14px 30px rgba(20, 28, 60, 0.14);
+}
+/* ===== Summary mini-graph upgrades (stronger + clearer) ===== */
+
+.ph-trends{
+  padding-top: 6px;
+}
+
+.ph-trendRow{
+  padding: 10px 12px;
+  border-radius: 14px;
+  background: rgba(255,255,255,0.70);
+  border: 1px solid rgba(15,23,42,0.08);
+  box-shadow: 0 8px 18px rgba(15,23,42,0.06);
+  margin-bottom: 14px;
+}
+
+.ph-trendLabel{
+  font-size: 1.15rem;
+  font-weight: 950;
+  letter-spacing: .2px;
+  color: #0f172a;
+  margin-bottom: 8px;
+}
+
+.ph-miniSvg{
+  width: 100%;
+  height: 110px; /* matches the SVG height feel */
+  display: block;
+}
+
+/* Month axis */
+.ph-xlabels{
+  display: grid;
+  gap: 6px;
+  margin-top: 12px;
+  padding-top: 10px;
+  padding-bottom: 6px;
+  border-top: 1px solid rgba(15, 23, 42, 0.10);
+}
+
+.ph-xlabel{
+  text-align: center;
+  font-weight: 950;
+  font-size: 1.0rem;
+  letter-spacing: .2px;
+  color: #0f172a;
+  opacity: 0.9;
+}
+

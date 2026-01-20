@@ -1,0 +1,224 @@
+/* src/routes/CharacterSelect.css */
+
+/* Fullscreen page (matches Start screen behaviour) */
+.cs-screen{
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: #071a14;
+}
+
+/* Reuse the start artwork as a blurred, matching backdrop */
+.cs-screen::before{
+  content: "";
+  position: absolute;
+  inset: -20px;
+  background-image: url("/images/start-screen.png");
+  background-size: cover;
+  background-position: center;
+  filter: blur(14px) saturate(1.15);
+  transform: scale(1.06);
+  opacity: 0.55;
+}
+
+/* Darken for readability */
+.cs-screen::after{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(1200px 700px at 50% 35%, rgba(255,255,255,0.10), rgba(0,0,0,0.55)),
+    linear-gradient(180deg, rgba(0,0,0,0.25), rgba(0,0,0,0.55));
+}
+
+.cs-stage{
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  padding: 18px;
+}
+
+.cs-card{
+  width: min(980px, 96vw);
+  border-radius: 24px;
+  background: rgba(255,255,255,0.92);
+  border: 1px solid rgba(255,255,255,0.45);
+  box-shadow: 0 28px 80px rgba(0,0,0,0.35);
+  backdrop-filter: blur(10px);
+  padding: clamp(18px, 3vw, 28px);
+}
+
+.cs-head{
+  text-align: center;
+  margin-bottom: 18px;
+}
+
+.cs-title{
+  margin: 0 0 6px;
+  font-size: clamp(34px, 4.6vw, 54px);
+  font-weight: 900;
+  letter-spacing: -0.6px;
+  color: #1f2937;
+}
+
+.cs-sub{
+  margin: 0;
+  font-size: clamp(16px, 2vw, 18px);
+  color: #374151;
+}
+
+/* Form */
+.cs-form{
+  width: min(720px, 100%);
+  margin: 16px auto 10px;
+}
+
+.cs-label{
+  display: block;
+  font-weight: 900;
+  margin: 0 0 8px;
+  color: #111827;
+}
+
+.cs-input{
+  width: 100%;
+  padding: 16px 18px;
+  font-size: 18px;
+  border: 2px solid rgba(17,24,39,0.12);
+  border-radius: 14px;
+  outline: none;
+  background: rgba(255,255,255,0.95);
+}
+
+.cs-input:focus{
+  border-color: rgba(34,197,94,0.7);
+  box-shadow: 0 0 0 4px rgba(34,197,94,0.18);
+}
+
+/* Avatar section */
+.cs-picker{
+  margin-top: 10px;
+}
+
+.cs-picker-head{
+  text-align: center;
+  margin: 8px 0 14px;
+}
+
+.cs-picker-title{
+  margin: 0 0 4px;
+  font-size: 20px;
+  font-weight: 900;
+  color: #111827;
+}
+
+.cs-picker-text{
+  margin: 0;
+  color: #4b5563;
+  font-size: 16px;
+}
+
+.cs-avatars{
+  display: flex;
+  gap: clamp(14px, 3vw, 24px);
+  justify-content: center;
+  align-items: stretch;
+  flex-wrap: wrap;
+  margin-top: 14px;
+}
+
+.cs-avatar{
+  position: relative;
+  width: min(420px, 92vw);
+  border-radius: 22px;
+  border: 2px solid rgba(17,24,39,0.10);
+  background: rgba(255,255,255,0.95);
+  padding: 18px 18px 14px;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  gap: 10px;
+  box-shadow: 0 14px 32px rgba(0,0,0,0.12);
+  transition: transform 0.12s ease, box-shadow 0.12s ease, border-color 0.12s ease;
+}
+
+.cs-avatar:hover{
+  transform: translateY(-3px);
+  box-shadow: 0 18px 40px rgba(0,0,0,0.18);
+}
+
+.cs-avatar:focus-visible{
+  outline: 3px solid rgba(34,197,94,0.75);
+  outline-offset: 4px;
+}
+
+.cs-avatar-glow{
+  position: absolute;
+  inset: 0;
+  border-radius: 22px;
+  background: radial-gradient(600px 260px at 50% 0%, rgba(34,197,94,0.22), transparent 60%);
+  opacity: 0.0;
+  transition: opacity 0.12s ease;
+  pointer-events: none;
+}
+
+.cs-avatar.is-active{
+  border-color: rgba(34,197,94,0.85);
+  box-shadow: 0 22px 52px rgba(34,197,94,0.22), 0 18px 40px rgba(0,0,0,0.18);
+}
+
+.cs-avatar.is-active .cs-avatar-glow{
+  opacity: 1;
+}
+
+.cs-avatar-label{
+  font-weight: 900;
+  font-size: 18px;
+  color: #111827;
+}
+
+/* Continue button matches start screen vibe */
+.cs-actions{
+  display: flex;
+  justify-content: center;
+  margin-top: 18px;
+}
+
+.cs-continue{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  padding: 16px 44px;
+  border-radius: 999px;
+  border: 2px solid rgba(255,255,255,.35);
+  cursor: pointer;
+
+  font-weight: 900;
+  letter-spacing: .4px;
+  font-size: clamp(18px, 2.2vw, 24px);
+  color: #ffffff;
+
+  background: linear-gradient(180deg, #35d46a 0%, #1ea94f 55%, #138a3f 100%);
+  box-shadow: 0 14px 32px rgba(0,0,0,.25), inset 0 2px 0 rgba(255,255,255,.35);
+}
+
+.cs-continue:hover{ transform: translateY(-1px); }
+.cs-continue:active{ transform: translateY(0px) scale(.99); }
+
+.cs-play{
+  display: inline-flex;
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255,255,255,.18);
+  box-shadow: inset 0 2px 0 rgba(255,255,255,.25);
+}

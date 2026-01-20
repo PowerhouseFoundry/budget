@@ -1,0 +1,436 @@
+.iom-overlay{
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: rgba(0,0,0,0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+}
+
+/* Shell makes scene + HUD sit side-by-side */
+.iom-shell{
+  display: flex;
+  gap: 16px;
+  align-items: stretch;
+  width: min(1200px, 96vw);
+  height: min(680px, 88vh);
+}
+
+/* Scene is the popup window */
+.iom-scene{
+  flex: 1 1 auto;
+  position: relative;
+  border-radius: 22px;
+  overflow: hidden;
+  box-shadow: 0 22px 60px rgba(0,0,0,0.55);
+
+  /* IMPORTANT: do NOT zoom in */
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  background-color: #0a0e1e;
+}
+
+/* Floating pick buttons directly on background (NO panel) */
+.iom-pickFloating{
+  position: absolute;
+  top: 140px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 260px;
+  max-width: 70%;
+}
+
+.iom-pickTitle{
+  color: rgba(255,255,255,0.95);
+  font-weight: 900;
+  font-size: 1.05rem;
+  margin-bottom: 10px;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.45);
+}
+
+.iom-pickStack{
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+
+.iom-pickBtn{
+  border: 1px solid rgba(255,255,255,0.22);
+  border-radius: 14px;
+  padding: 14px 12px;
+  cursor: pointer;
+
+  /* Light blue mannequin vibe */
+  background: rgba(77, 225, 255, 0.28);
+  backdrop-filter: blur(3px);
+
+  color: rgba(255,255,255,0.95);
+  font-weight: 1000;
+  font-size: 1.12rem;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+
+  text-align: center;
+  position: relative;
+}
+.iom-pickBtn:active{ transform: translateY(1px); }
+
+.iom-tick{
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-weight: 1000;
+  color: rgba(255,255,255,0.95);
+  background: rgba(19,115,51,0.22);
+  border: 1px solid rgba(255,255,255,0.18);
+  padding: 3px 10px;
+  border-radius: 999px;
+}
+
+.iom-tip{
+  margin-top: 10px;
+  color: rgba(255,255,255,0.78);
+  font-size: 0.92rem;
+  line-height: 1.25;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.45);
+}
+
+/* Browser floating area (sits on background) */
+.iom-browserFloating{
+  position: absolute;
+  top: 160px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 560px;
+  max-width: 80%;
+  display: grid;
+  grid-template-columns: 56px 1fr 56px;
+  grid-template-rows: 1fr auto;
+  gap: 10px;
+  align-items: center;
+}
+
+.iom-arrow{
+  width: 52px;
+  height: 110px;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,0.18);
+  background: rgba(10, 14, 30, 0.28);
+  backdrop-filter: blur(4px);
+  color: rgba(255,255,255,0.95);
+  font-size: 2.1rem;
+  cursor: pointer;
+}
+.iom-arrow:active{ transform: translateY(1px); }
+
+.iom-previewWrap{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 310px;
+}
+
+/* === UNIVERSAL ITEM CARD (for ALL sections) === */
+.iom-cardBtn{
+  width: min(420px, 100%);
+  aspect-ratio: 1 / 1;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  cursor: pointer;
+  position: relative;
+}
+
+/* kill any browser focus glow / highlight tint */
+.iom-cardBtn:focus,
+.iom-cardBtn:focus-visible{
+  outline: none;
+}
+.iom-cardBtn:active{ transform: translateY(1px); }
+
+.iom-cardFrame{
+  width: 100%;
+  height: 100%;
+  border-radius: 18px;
+
+  border: 3px solid rgba(120, 220, 255, 0.95);
+  box-shadow:
+    0 0 0 4px rgba(0, 180, 255, 0.18),
+    0 18px 50px rgba(0,0,0,0.45);
+
+  overflow: hidden;          /* hides any grey edges */
+  background: rgba(0,0,0,0.10);
+}
+
+.iom-cardImg{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;         /* fills & crops so no grey shows */
+  object-position: center;
+  display: block;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.iom-cardPrice{
+  position: absolute;
+  left: 14px;
+  bottom: 14px;
+  background: rgba(0,0,0,0.45);
+  color: rgba(255,255,255,0.95);
+  font-weight: 900;
+  border-radius: 12px;
+  padding: 8px 12px;
+  border: 1px solid rgba(255,255,255,0.18);
+}
+
+.iom-cardHint{
+  position: absolute;
+  right: 14px;
+  bottom: 14px;
+  background: rgba(10, 160, 220, 0.22);
+  color: rgba(255,255,255,0.95);
+  font-weight: 900;
+  border-radius: 12px;
+  padding: 8px 12px;
+  border: 1px solid rgba(255,255,255,0.18);
+  font-size: 0.85rem;
+}
+
+.iom-previewEmpty{
+  color: rgba(255,255,255,0.8);
+  text-align: center;
+}
+
+.iom-bottomNav{
+  grid-column: 1 / -1;
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  align-items: center;
+  padding-top: 6px;
+}
+
+.iom-navBtn{
+  border: 0;
+  border-radius: 999px;
+  padding: 10px 12px;
+  cursor: pointer;
+  font-weight: 900;
+  background: rgba(255,255,255,0.92);
+  color: #0b1020;
+  font-size: 0.92rem;
+}
+
+.iom-navBtn.is-active{
+  background: rgba(10, 160, 220, 0.28);
+  color: rgba(255,255,255,0.96);
+  border: 1px solid rgba(255,255,255,0.18);
+}
+
+.iom-navBtn.is-picked{
+  box-shadow: 0 0 0 2px rgba(40, 180, 90, 0.35) inset;
+}
+
+.iom-backBtn{
+  background: rgba(255,255,255,0.22);
+  color: rgba(255,255,255,0.95);
+  border: 1px solid rgba(255,255,255,0.18);
+}
+
+/* HUD sits OUTSIDE the scene */
+.iom-hud{
+  flex: 0 0 320px; /* slightly smaller so it doesn't crowd */
+  height: 100%;
+  border-radius: 18px;
+  background: rgba(10, 14, 30, 0.58);
+  border: 1px solid rgba(255,255,255,0.16);
+  backdrop-filter: blur(8px);
+  display: grid;
+  grid-template-rows: auto 1fr auto auto;
+  overflow: hidden;
+  box-shadow: 0 22px 60px rgba(0,0,0,0.45);
+}
+
+.iom-hudTop{
+  padding: 12px 12px 10px 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.10);
+}
+
+.iom-cost{
+  color: rgba(255,255,255,0.92);
+  font-weight: 900;
+  font-size: 1.05rem;
+  margin-bottom: 8px;
+}
+.iom-cost span{ color: #4de1ff; }
+
+.iom-scoreWrap{
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+  align-items: center;
+}
+
+.iom-scoreText{
+  color: rgba(255,255,255,0.92);
+  font-weight: 1000;
+  font-size: 0.95rem;
+}
+
+.iom-scoreBar{
+  grid-column: 1 / -1;
+  height: 12px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.12);
+  overflow: hidden;
+  border: 1px solid rgba(255,255,255,0.12);
+}
+
+.iom-scoreFill{
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #ff4df0, #4de1ff);
+}
+
+.iom-hudRows{
+  padding: 10px 12px;
+  overflow: auto;
+}
+
+.iom-row{ margin-bottom: 10px; }
+
+.iom-rowLabel{
+  color: rgba(255,255,255,0.88);
+  font-weight: 900;
+  font-size: 0.92rem;
+  margin-bottom: 6px;
+}
+
+.iom-rowBox{
+  display: grid;
+  grid-template-columns: 68px 1fr;
+  gap: 10px;
+  align-items: center;
+  padding: 8px;
+  border-radius: 14px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.10);
+}
+
+/* square thumbs so 1024x1024 images fit nicely */
+.iom-thumb{
+  width: 64px;
+  height: 64px;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.08);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.iom-thumb img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;   /* square crop */
+  display: block;
+}
+.iom-thumbEmpty{
+  width: 100%;
+  height: 100%;
+  opacity: 0.35;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.12);
+}
+
+.iom-rowDesc{
+  color: rgba(255,255,255,0.88);
+  font-size: 0.86rem;
+  line-height: 1.15;
+}
+.iom-rowPrice{
+  margin-top: 4px;
+  color: #4de1ff;
+  font-weight: 900;
+}
+
+/* Advice character */
+.iom-advice{
+  padding: 10px 12px;
+  display: grid;
+  grid-template-columns: 44px 1fr;
+  gap: 10px;
+  align-items: start;
+  border-top: 1px solid rgba(255,255,255,0.10);
+}
+
+.iom-assistant{
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  background: rgba(255,255,255,0.10);
+  border: 1px solid rgba(255,255,255,0.14);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.iom-assistant img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.iom-assistantFallback{
+  color: rgba(255,255,255,0.9);
+  font-size: 1.2rem;
+  font-weight: 900;
+}
+
+.iom-bubble{
+  border-radius: 14px;
+  background: rgba(255,255,255,0.10);
+  border: 1px solid rgba(255,255,255,0.14);
+  padding: 10px 10px;
+  color: rgba(255,255,255,0.92);
+  font-size: 0.9rem;
+  line-height: 1.25;
+}
+
+/* Actions */
+.iom-actions{
+  padding: 10px 12px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  border-top: 1px solid rgba(255,255,255,0.10);
+}
+
+.iom-btn{
+  border: 0;
+  border-radius: 12px;
+  padding: 10px 10px;
+  cursor: pointer;
+  font-weight: 900;
+  font-size: 0.95rem;
+  line-height: 1.1;
+}
+
+.iom-btnClose{
+  background: rgba(255,255,255,0.88);
+  color: #0b1020;
+}
+
+.iom-btnConfirm{
+  background: linear-gradient(90deg, #ff4df0, #4de1ff);
+  color: #0b1020;
+}
+
+.iom-btnConfirm:disabled{
+  opacity: 0.45;
+  cursor: not-allowed;
+}

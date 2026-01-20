@@ -1,0 +1,21 @@
+/* src/styles/font-override.css
+   Applies UrbanDisplay font to header and sidebar only.
+*/
+
+@font-face {
+  font-family: 'UrbanDisplay';
+  src: url('../assets/fonts/UrbanDisplay.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.topbar,
+.sidebar {
+  font-family: 'UrbanDisplay', sans-serif !important;
+  letter-spacing: 0.5px;
+}
+
+.topbar .kpi div,
+.sidebar .item span {
+  font-family: 'UrbanDisplay', sans-serif !important;
+}

@@ -1,0 +1,13 @@
+/* src/components/MessageModal.css */
+.modal-backdrop{ position: fixed; inset: 0; background: rgba(15,23,42,.38); display: grid; place-items: center; }
+.modal-card{ width: min(720px, 92vw); background: #fff; border-radius: 16px; border: 1px solid #e5e7eb; box-shadow: 0 20px 60px rgba(0,0,0,.25); padding: 16px; }
+.modal-head{ display:flex; align-items:center; justify-content:space-between; gap:12px; }
+.modal-title{ font-family: Helvetica, Arial, sans-serif; font-size: 1.25rem; font-weight: 800; color:#0b3c91; }
+.icon-btn{ background:#fff; border:1px solid #e5e7eb; border-radius:10px; padding:6px 10px; cursor:pointer; }
+.modal-meta{ display:flex; flex-wrap:wrap; gap:14px; color: var(--muted); margin-top:6px; font-size:.95rem; }
+.modal-body{ margin-top: 10px; color:#111827; line-height:1.5; }
+.modal-actions{ display:flex; gap:10px; justify-content:flex-end; margin-top: 12px; }
+.btn{ border:none; border-radius:10px; padding:10px 14px; cursor:pointer; font-weight:700; }
+.btn.primary{ background: var(--blue); color:#fff; }
+.btn.warn{ background: #ef4444; color:#fff; }
+.btn.soft{ background: #f3f4f6; }

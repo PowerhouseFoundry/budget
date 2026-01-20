@@ -1,0 +1,7 @@
+/* src/components/StepIndicator.css */
+.stepper{ display:flex; gap:8px; flex-wrap:wrap; margin:8px 0 14px; }
+.step{ display:flex; align-items:center; gap:8px; padding:8px 10px; border:1px solid #e5e7eb; background:#fff; border-radius:12px; cursor:pointer; }
+.step .num{ width:20px; height:20px; border-radius:50%; display:grid; place-items:center; background:#eef2ff; color:#3730a3; font-weight:900; }
+.step.on{ box-shadow:0 0 0 6px rgba(59,130,246,.12); border-color:#bfdbfe; }
+.step.done .num{ background:#dcfce7; color:#166534; }
+.step .lbl{ font-weight:800; font-size:.95rem; }

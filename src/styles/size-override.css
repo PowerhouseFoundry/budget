@@ -1,0 +1,108 @@
+/* src/styles/size-override.css (v4)
+   Double sizes without changing header layout. */
+
+:root{
+  --sidebar-width: 320px;
+  --topbar-height: 120px;
+  --content-padding: 20px;
+  --grid-gap: 16px;
+  --tile-aspect: 1 / 1;
+  --tile-min-height: 150px;
+}
+
+/* --- Sidebar sizing (safe) --- */
+.sidebar{
+  flex: 0 0 var(--sidebar-width);
+  width: var(--sidebar-width);
+  font-size: 1.5rem;
+}
+.sidebar .item{ padding: 24px 16px; font-size: 1.5rem; }
+.sidebar .item span{ font-size: 1.5rem; }
+
+/* --- Header sizing ONLY (don’t change layout parent) --- */
+/* Do NOT set .topbar to display:flex or justify-content here.
+   Let header-fullwidth.css control layout via .topbar-row. */
+.topbar{
+  min-height: var(--topbar-height);
+  padding: 20px 28px;
+  box-sizing: border-box;
+  font-size: 2rem; /* bigger header text */
+}
+
+/* The actual flex row lives here; keep it a row and prevent wrapping */
+.topbar--full .topbar-row{
+  display: flex !important;
+  align-items: flex-end !important;
+  flex-wrap: nowrap !important;
+  gap: 24px;
+}
+
+/* Title grows on the left */
+.month-title{
+  flex: 1 1 auto !important;
+  min-width: 0;
+}
+
+/* KPI cluster pushed to the far right */
+.topbar--full .kpi-wrap--right{
+  margin-left: auto !important;
+  display: flex;
+  gap: 28px;
+}
+
+/* Bigger KPI labels/numbers without affecting layout */
+.topbar .kpi div{ font-size: 2rem; }
+.topbar .kpi{ min-width: 200px; }
+
+/* --- Main content sizing --- */
+.content{
+  padding: var(--content-padding);
+  box-sizing: border-box;
+  overflow: auto;
+}
+
+/* --- Tiles keep square-ish aspect and images shrink-to-fit --- */
+.tile,
+.card.option,
+.option-card,
+.choice-tile,
+.choice-card{
+  position: relative;
+  aspect-ratio: var(--tile-aspect);
+  min-height: var(--tile-min-height);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+.tile img,
+.card.option img,
+.option-card img,
+.choice-tile img,
+.choice-card img{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;  /* ensures PNGs shrink to the box */
+  display: block;
+}
+
+/* --- Grids (3 across) --- */
+.options-grid,
+.choices-grid,
+.tiles-grid{
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--grid-gap);
+  align-items: stretch;
+}
+
+.inbox-card{ aspect-ratio: auto; min-height: unset; }
+
+/* --- Responsive tweaks --- */
+@media (max-width: 1200px){
+  :root{ --sidebar-width: 280px; --topbar-height: 110px; }
+}
+@media (max-width: 960px){
+  :root{ --sidebar-width: 248px; --topbar-height: 96px; --tile-min-height: 135px; }
+}

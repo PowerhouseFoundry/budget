@@ -1,0 +1,126 @@
+/*
+ * src/styles/inbox.css (Updated)
+ * Styles for the Inbox component (Inbox.jsx)
+ */
+
+/* Define a primary color variable for easy theme changes */
+:root {
+  --primary-blue: #0b7cff;
+  --border: #e5e7eb;
+  /* Setting a variable for the base highlight color, but inline styles are primary */
+  --chosen-highlight: #3498db; 
+}
+
+/* -------------------------------------------------------------------
+ * 1. LAYOUT & ROOT (Snipped for brevity)
+ * ------------------------------------------------------------------- */
+
+.inbox-root {
+  display: flex;
+  height: 100%;
+  background: #fcfcfd;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+}
+
+.inbox-list {
+  flex-shrink: 0;
+  width: 320px;
+  max-height: 100%;
+  overflow-y: auto;
+  border-right: 1px solid var(--border);
+  background: #ffffff;
+}
+
+.inbox-list-hd {
+  font-size: 1.2rem;
+  font-weight: 800;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  background: #ffffff;
+  z-index: 5;
+}
+
+.inbox-read {
+  flex-grow: 1;
+  padding: 20px;
+  overflow-y: auto;
+  background: #fcfcfd;
+}
+
+/* -------------------------------------------------------------------
+ * 3. READING PANE & FONT SIZE INCREASE
+ * ------------------------------------------------------------------- */
+
+.mail-hd {
+  padding-bottom: 12px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.mail-subject {
+  font-size: 1.5rem;
+  font-weight: 800;
+  margin-bottom: 8px;
+}
+
+/* FIX: Increased Font Size for all Email Body Text */
+.mail-body .mail-paragraph {
+    font-size: 1.35rem; 
+    line-height: 1.7; 
+    color: #222222;
+}
+
+/* -------------------------------------------------------------------
+ * 4. SCENARIO CHOICE BUTTONS (FIXED INTERACTIVITY - AGGRESSIVE)
+ * ------------------------------------------------------------------- */
+
+/* CRITICAL FIX: Ensure the main body container doesn't block clicks */
+.mail-body {
+    pointer-events: auto !important;
+}
+
+.mail-options {
+    margin-top: 25px;
+    padding-top: 15px;
+    border-top: 1px dashed #d1d5db;
+    /* Ensure the options area itself is clickable */
+    pointer-events: auto !important; 
+}
+
+/* Base styles for all choice buttons */
+.option-btn {
+    transition: all 0.15s ease;
+    cursor: pointer; 
+    /* Ensure individual buttons are clickable and override any disabling parent */
+    pointer-events: auto !important;
+}
+
+/* Default style for unchosen buttons (Set via CSS) */
+.option-btn:not(.is-chosen) {
+    border: 1px solid #e5e7eb; 
+    background: #ffffff; 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.04);
+}
+
+/* Hover effect for unchosen buttons */
+.option-btn:not(.is-chosen):hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-color: #c0c0c0;
+}
+
+/* Ensure bold impact numbers are visible */
+.option-btn span b { 
+    font-weight: 800;
+    color: #1a5276; 
+    white-space: pre-wrap;
+}
+
+/* -------------------------------------------------------------------
+ * 5. RESPONSIVENESS (Snipped for brevity)
+ * ------------------------------------------------------------------- */

@@ -1,0 +1,24 @@
+/* Strong, explicit overrides for header font sizes & KPI visuals */
+.topbar{
+  font-size: 2rem !important;    /* Double all header text */
+}
+.topbar .kpi{ min-width: 220px; }
+.topbar .kpi .kpi-label{
+  display: inline-flex; align-items: center; gap: 8px;
+  font-weight: 700;
+  font-size: 1em; /* inherits doubled size */
+  line-height: 1.2;
+}
+.topbar .kpi .kpi-label .icon{
+  width: 22px; height: 22px;
+  display: inline-flex; align-items: center; justify-content: center;
+}
+.topbar .kpi .kpi-label .icon svg{
+  width: 22px; height: 22px;
+}
+/* Ensure progress bars are thicker globally inside header */
+.topbar .kpi .progress,
+.topbar .kpi .ProgressBar,
+.topbar .kpi [role="progressbar"]{
+  height: 20px !important;
+}

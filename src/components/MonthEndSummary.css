@@ -1,0 +1,142 @@
+/* src/components/MonthEndSummary.css */
+
+/* FULL SCREEN MODAL OVERLAY */
+.mes-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 18px;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+/* Your existing card styling can stay similar, but ensure it doesn't stretch full width */
+.mes-card {
+  width: min(920px, 96vw);
+  max-height: 90vh;
+  overflow: auto;
+
+  background: #ffffff;
+  border-radius: 16px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 18px 60px rgba(0, 0, 0, 0.35);
+  padding: 18px;
+}
+
+.mes-title {
+  font-size: 1.2rem;
+  font-weight: 800;
+  margin-bottom: 12px;
+}
+
+.mes-stage {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 16px;
+  align-items: start;
+}
+
+.mes-art {
+  width: 220px;
+  height: 180px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #f3f4f6;
+  border: 1px solid #e5e7eb;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mes-art img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ph {
+  font-weight: 700;
+  opacity: 0.6;
+}
+
+.mes-info .line {
+  margin-bottom: 8px;
+  font-size: 1rem;
+}
+
+.mes-info .line.main {
+  font-size: 1.15rem;
+  font-weight: 900;
+}
+
+.pos {
+  color: #0a7a2f;
+}
+
+.neg {
+  color: #b42318;
+}
+
+.mes-summary-panel {
+  margin-top: 10px;
+}
+
+/* AVATAR WRAP: this prevents “inline bottom of screen” behaviour and gives space */
+.mes-avatarWrap {
+  display: flex;
+  justify-content: center;
+  margin: 10px 0 16px;
+}
+
+.mes-avatarInner {
+  /* Change this if you ever need to constrain it */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sum-grid {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px 14px;
+  padding: 12px;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  background: #fafafa;
+}
+
+.sum-grid .k {
+  font-weight: 700;
+}
+
+.sum-grid .v {
+  font-weight: 900;
+}
+
+.mes-total {
+  margin-top: 12px;
+  font-size: 1.05rem;
+}
+
+.mes-actions {
+  margin-top: 14px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+/* Responsive tweak */
+@media (max-width: 720px) {
+  .mes-stage {
+    grid-template-columns: 1fr;
+  }
+  .mes-art {
+    width: 100%;
+    height: 180px;
+  }
+}
