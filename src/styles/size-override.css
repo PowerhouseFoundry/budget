@@ -7,6 +7,17 @@ body {
   transform-origin: top center;
   width: calc(100% / var(--app-scale));
 }
+/* ================================
+   Fullscreen intro screens override
+   ================================ */
+
+/* Start screen */
+.start-screen,
+.cs-screen,
+.ls-screen {
+  transform: scale(calc(1 / var(--app-scale)));
+  transform-origin: center center;
+}
 
 
 /* src/styles/size-override.css (v4)
