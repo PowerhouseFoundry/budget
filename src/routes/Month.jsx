@@ -34,7 +34,8 @@ const safeOnClick = (fn) => (e) => {
 }
 
 // IMAGES: if you’re serving from /public/images
-const IMG = (file) => `/images/${file}`
+const IMG = (file) => `${import.meta.env.BASE_URL}images/${file}`
+
 
 const IMG_MAP = {
   // --- Housing ---
@@ -1117,7 +1118,8 @@ const closeGallery = () => {
 const getHousingGalleryImages = (housingId) => {
   // Convention: put images in /public/images/housing/<housingId>/1.jpg ... 5.jpg
   // Example: /public/images/housing/housing_shared/1.jpg
-  const base = `/images/housing/${housingId}`;
+  const base = `${import.meta.env.BASE_URL}images/housing/${housingId}`;
+
   return [1, 2, 3, 4, 5].map((n) => `${base}/${n}.jpg`);
 };
 

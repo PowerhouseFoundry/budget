@@ -105,7 +105,8 @@ export default function InterviewOutfitModal({ open, onClose, onConfirm, gender 
 
       return {
         id: `${section}_${resolvedGender}_${n}`,
-        img: `/images/interview/${base}${n}.png`,
+        img: `${import.meta.env.BASE_URL}images/interview/${base}${n}.png`,
+
         price: PRICES?.[section]?.[tIdx] ?? 0,
         score: SCORES?.[section]?.[tIdx] ?? 0,
         desc: DESCRIPTORS?.[section]?.[tIdx] ?? "Selected item",
@@ -209,7 +210,8 @@ const advice = useMemo(() => {
         {/* LEFT: scene popup */}
         <div
           className="iom-scene"
-          style={{ backgroundImage: "url(/images/interview/background.png)" }}
+          style={{ backgroundImage: `url(${import.meta.env.BASE_URL}images/interview/background.png)` }}
+
         >
           {/* First screen: buttons directly on background */}
           {stage === "pick" ? (
@@ -348,7 +350,8 @@ const advice = useMemo(() => {
           <div className="iom-advice">
             <div className="iom-assistant">
               <img
-                src="/images/interview/shop_assistant.png"
+                src={import.meta.env.BASE_URL + "images/interview/shop_assistant.png"}
+
                 alt=""
                 onError={(e) => {
                   e.currentTarget.style.display = "none";

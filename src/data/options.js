@@ -1,5 +1,5 @@
 // src/data/options.js
-const IMG = (name) => `/images/${name}.png`;
+const IMG = (name) => `${import.meta.env.BASE_URL}images/${name}.png`;
 
 export const HOUSING = [
   // House share wellbeing -3

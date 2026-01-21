@@ -55,7 +55,8 @@ export default function ScoreAvatar({
     ? `avatar-${g}-${tier}-${mood}.png`
     : `avatar-${g}-${mood}.png`
 
-  const src = `/avatars/${fileName}`
+const src = `${import.meta.env.BASE_URL}avatars/${fileName}`
+
 
   return (
     <div
@@ -77,7 +78,8 @@ export default function ScoreAvatar({
         }}
         onError={(e) => {
           // Safety fallback: always fall back to normal "ok"
-          e.currentTarget.src = `/avatars/avatar-${g}-ok.png`
+          e.currentTarget.src = `${import.meta.env.BASE_URL}avatars/avatar-${g}-ok.png`
+
         }}
       />
     </div>

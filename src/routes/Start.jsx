@@ -39,7 +39,8 @@ export default function Start() {
       <div className="start-stage">
         <img
           className="start-art"
-          src="/images/start-screen.png"
+          src={import.meta.env.BASE_URL + "images/start-screen.png"}
+
           alt="Budgeting Challenge start screen"
           draggable="false"
         />

@@ -15,7 +15,8 @@
   content: "";
   position: absolute;
   inset: -20px;
-  background-image: url("/images/start-screen.png");
+  background-image: url("../images/start-screen.png");
+
   background-size: cover;
   background-position: center;
   filter: blur(14px) saturate(1.15);
