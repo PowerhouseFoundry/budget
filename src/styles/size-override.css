@@ -28,11 +28,19 @@ html, body{
 
 /* Scale ONLY the main app shell (not intro screens) */
 .app-root{
-  transform: scale(var(--app-scale));
+  position: relative;
+  left: 50%;
+
+  /* center it, then scale */
+  transform: translateX(-50%) scale(var(--app-scale));
   transform-origin: top center;
-  width: calc(100% / var(--app-scale));
+
+  /* use viewport width so right side isn't clipped */
+  width: calc(100vw / var(--app-scale));
+
   overflow-x: hidden; /* extra safety */
 }
+
 
 /* Ensure intro screens remain true fullscreen and never scroll */
 .start-screen,
