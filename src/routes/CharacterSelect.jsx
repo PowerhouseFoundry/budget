@@ -68,7 +68,13 @@ export default function CharacterSelect() {
                 onClick={() => setAvatarGender("male")}
               >
                 <div className="cs-avatar-glow" aria-hidden="true" />
-                <ScoreAvatar gender="male" money={0} health={70} wellbeing={70} size={240} />
+                <img
+  src={`${import.meta.env.BASE_URL}avatars/avatar-male-happy.png`}
+  alt="Male avatar"
+  width={240}
+  height={240}
+/>
+
                 <div className="cs-avatar-label">Character 1</div>
               </button>
 
@@ -80,7 +86,13 @@ export default function CharacterSelect() {
                 onClick={() => setAvatarGender("female")}
               >
                 <div className="cs-avatar-glow" aria-hidden="true" />
-                <ScoreAvatar gender="female" money={0} health={70} wellbeing={70} size={240} />
+               <img
+  src={`${import.meta.env.BASE_URL}avatars/avatar-female-happy.png`}
+  alt="Female avatar"
+  width={240}
+  height={240}
+/>
+
                 <div className="cs-avatar-label">Character 2</div>
               </button>
             </div>
