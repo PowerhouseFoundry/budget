@@ -15,7 +15,7 @@
    0.80 = more zoomed out
 */
 :root{
-  --app-scale: 0.80;
+  --app-scale: 0.75;
 }
 
 /* Prevent sideways scroll globally (keep vertical scroll where needed) */
