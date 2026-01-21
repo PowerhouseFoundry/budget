@@ -400,24 +400,7 @@ const showUcForm = forcedForm === "uc";
             minWidth: 0,
           }}
         >
-          {/* ✅ TEST BUTTON (always visible in Inbox right pane) */}
-<div style={{ marginBottom: 10, display: "flex", gap: 10, flexWrap: "wrap" }}>
-  <button
-    type="button"
-    className="btn"
-    onClick={() => setTestOutfitOpen(true)}
-  >
-    🧪 Test Outfit Builder
-  </button>
-
-  <button
-    type="button"
-    className="btn"
-    onClick={() => setTestJobBoardOpen(true)}
-  >
-    🧪 Test Job Board
-  </button>
-</div>
+ 
 
 
           {!selected ? (
