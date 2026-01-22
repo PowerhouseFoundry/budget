@@ -1,34 +1,27 @@
-/* src/routes/CharacterSelect.css */
-
-
-/* Fullscreen page (matches Start screen behaviour) */
+/* Fullscreen page (scrollable when content is taller than the screen) */
 .cs-screen{
   position: fixed;
   inset: 0;
   width: 100vw;
   height: 100vh;
-  overflow: hidden;
+
+  /* IMPORTANT: allow vertical scroll if needed */
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+
   background: #071a14;
 }
-/* Character Select: fit all screens (no cropping) */
-.cs-screen{
-  min-height: 100vh;
-  overflow-y: auto;     /* allow vertical scroll on this page */
-  overflow-x: hidden;   /* never sideways */
-  -webkit-overflow-scrolling: touch;
-}
 
-/* Add breathing room so the bottom button never gets clipped */
-.cs-screen{
-  padding-bottom: 80px;
-}
-/* Keep the main panel centered and not too wide */
-.cs-screen .panel,
-.cs-screen .card,
-.cs-screen .container{
-  margin-left: auto;
-  margin-right: auto;
-  width: min(1100px, 94vw);
+/* Center the card, but allow it to be taller than the viewport */
+.cs-stage{
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  min-height: 100%;     /* key change (was height:100%) */
+  display: grid;
+  place-items: start center; /* top-align so button isn't forced off-screen */
+  padding: 18px 18px 90px;   /* bottom padding so Continue is never clipped */
 }
 
 /* Reuse the start artwork as a blurred, matching backdrop */
@@ -55,15 +48,6 @@ background-image: url("../images/start-screen.png");
     linear-gradient(180deg, rgba(0,0,0,0.25), rgba(0,0,0,0.55));
 }
 
-.cs-stage{
-  position: relative;
-  z-index: 2;
-  width: 100%;
-  height: 100%;
-  display: grid;
-  place-items: center;
-  padding: 18px;
-}
 
 .cs-card{
   width: min(980px, 96vw);
