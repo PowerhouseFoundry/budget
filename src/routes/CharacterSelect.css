@@ -50,7 +50,7 @@
   min-height: 100%;
   display: grid;
   place-items: start center;     /* IMPORTANT: start, not center */
-  padding: 18px 18px 120px;      /* extra bottom space so Continue never clips */
+  padding: 28px 18px 140px;    /* extra bottom space so Continue never clips */
   box-sizing: border-box;
 }
 
