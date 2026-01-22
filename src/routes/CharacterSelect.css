@@ -1,9 +1,5 @@
 /* src/routes/CharacterSelect.css */
-/* Fix character select zoom */
-.cs-screen {
-  transform: scale(0.9);
-  transform-origin: center center;
-}
+
 
 /* Fullscreen page (matches Start screen behaviour) */
 .cs-screen{
@@ -13,6 +9,26 @@
   height: 100vh;
   overflow: hidden;
   background: #071a14;
+}
+/* Character Select: fit all screens (no cropping) */
+.cs-screen{
+  min-height: 100vh;
+  overflow-y: auto;     /* allow vertical scroll on this page */
+  overflow-x: hidden;   /* never sideways */
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Add breathing room so the bottom button never gets clipped */
+.cs-screen{
+  padding-bottom: 80px;
+}
+/* Keep the main panel centered and not too wide */
+.cs-screen .panel,
+.cs-screen .card,
+.cs-screen .container{
+  margin-left: auto;
+  margin-right: auto;
+  width: min(1100px, 94vw);
 }
 
 /* Reuse the start artwork as a blurred, matching backdrop */
