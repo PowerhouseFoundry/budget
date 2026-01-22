@@ -1,4 +1,9 @@
 /* src/routes/CharacterSelect.css */
+/* Fix character select zoom */
+.cs-screen {
+  transform: scale(0.9);
+  transform-origin: center center;
+}
 
 /* Fullscreen page (matches Start screen behaviour) */
 .cs-screen{
