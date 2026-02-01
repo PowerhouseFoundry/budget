@@ -6,19 +6,16 @@
 */
 
 /* =========================
-   1) Global scale behaviour
+/* =========================
+   1) Global scale behaviour (RESPONSIVE)
    ========================= */
 
-/* Adjust this:
-   0.90 = bigger
-   0.85 = default
-   0.80 = more zoomed out
-*/
+/* Default: most laptops */
 :root{
-  --app-scale: 0.75;
+  --app-scale: 0.90;
 }
 
-/* Prevent sideways scroll globally (keep vertical scroll where needed) */
+/* Prevent sideways scroll globally */
 html, body{
   margin: 0;
   padding: 0;
@@ -30,16 +27,33 @@ html, body{
 .app-root{
   position: relative;
   left: 50%;
-
-  /* center it, then scale */
   transform: translateX(-50%) scale(var(--app-scale));
   transform-origin: top center;
 
-  /* use viewport width so right side isn't clipped */
+  /* ensures right side never gets clipped */
   width: calc(100vw / var(--app-scale));
 
-  overflow-x: hidden; /* extra safety */
+  /* helps short screens not crop content */
+  min-height: calc(100vh / var(--app-scale));
+
+  overflow-x: hidden;
 }
+
+/* Smaller laptops / iPad landscape */
+@media (max-width: 1200px), (max-height: 850px){
+  :root{ --app-scale: 0.85; }
+}
+
+/* iPads */
+@media (max-width: 1024px), (max-height: 760px){
+  :root{ --app-scale: 0.80; }
+}
+
+/* Smaller iPads / very short screens */
+@media (max-width: 900px), (max-height: 700px){
+  :root{ --app-scale: 0.76; }
+}
+
 
 
 /* Ensure intro screens remain true fullscreen and never scroll */
